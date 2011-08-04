@@ -11,8 +11,6 @@ urls = (
 app = web.application(urls, globals(), autoreload=True)
 
 
-#render = web.template.render('templates/', base='layout')
-render_partial = web.template.render('templates/')
 
 def render(global_vars = {}, partial = False):
     if 'title' not in global_vars:
@@ -25,12 +23,19 @@ def render(global_vars = {}, partial = False):
 
 
 
+
+
+class index:
+    def GET(self):
+        posts = map(lambda x: x[:-5], os.listdir('posts'))
+        return render().index(settings.SITE_NAME, posts)
+
 class home:
     def GET(self):
-        post_list = os.listdir('pages')
+        post_list = os.listdir('posts')
         posts = []
         for post in post_list:
-            f = open('pages/' + post, 'rb')
+            f = open('posts/' + post, 'rb')
             posts += [render_partial.post(post[:-5], f.read())]
             f.close()
             
@@ -38,23 +43,24 @@ class home:
 
 
 
-class index:
-    def GET(self):
-        posts = map(lambda x: x[:-5], os.listdir('pages'))
-        return render().index(settings.SITE_NAME, posts)
-
 
 
 class post:
     def GET(self, url):
         try:
-            f = open('pages/' + url + '.post', 'rb')
+            f = open('posts/' + url + '.post', 'rb')
             content = f.read()
             f.close()
+            name = web.websafe(url)
         except IOError:
             content = "This page does not exist!"
+            name = "Not Found."
         
-        return render.post(settings.SITE_NAME + " - " + web.websafe(url), content)
+        title = settings.SITE_NAME + " - " + name
+        
+        return render({'title' : title}).post(name, content)
+
+
 
 
 if __name__ == "__main__":
