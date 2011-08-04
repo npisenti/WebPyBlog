@@ -1,0 +1,8 @@
+$def with (title, name, content, posts)
+$var title:$title
+<h1>$name</h1>
+<h2>$content</h2>
+<ul>
+$for post in posts:
+	<li><a href="$post">$post</a></li>
+<ul>
