@@ -5,7 +5,8 @@ from helpers import *
 urls = (
   '/', 'home',
   '/index', 'index',
-  '/(.*)', 'post')
+  '/page/(.*)', 'page',
+  '/post/(.*)', 'post')
 
 app = web.application(urls, globals(), autoreload=True)
 
@@ -27,8 +28,9 @@ class post:
     def GET(self, url):
         return render_post_or_none(url)
 
-
-
+class page:
+    def GET(self, url):
+        return render_page_or_none(url)
 
 if __name__ == "__main__":
     app.run()

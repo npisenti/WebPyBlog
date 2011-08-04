@@ -1,25 +1,29 @@
-body{
-    background:white;
-    margin: 0;
+html, body{
+    background: #fff;
+    height: 100%;
+    margin: 0px;
+   
     font: "Hoefler Text";
 }
+
 
 h1 { 
     font-weight: 500;
     font-size: 40px;}
+    
 #container {
     width: 100%;
-    position: absolute;
-    top:0;
+    height:auto !important;
+    min-height: 100%;
 }
 #header {
     
     width: 100%;
-    
+ 
 }
 #title-bar { background: #eee; }
 
-#header ul { margin: auto; padding: 20px 20px; width: 800px;}
+#header ul { margin: auto; padding: 20px 20px; width: 800px; }
 #header li { display: inline;  }
 #title-bar li { padding-left: 20px; margin:auto; }
 #nav-bar { 
@@ -46,16 +50,18 @@ h1 {
 ul h1 { display: inline;}
 ul h2 { display: inline;}
 
+
 #content{
     border: 1px solid black;
     border-top: none; 
     border-bottom: none;
     width: 840px;
+    
    
     margin:auto;
     background: white;
-    position: relative;
-    overflow:none;
+    
+    
 }
 
 #content h1 { padding: 20px; margin: 0; }
@@ -70,6 +76,10 @@ ul h2 { display: inline;}
 
 
 
+#content .page {
+    padding: 20px;
+}
+#content .page h1 { padding: 20px 0px;}
 
 
 
