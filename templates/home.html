@@ -1,5 +1,8 @@
-$def with(title, posts)
-$var title:$title
+$def with(posts)
 
-$for post in posts:
-	<p>$:post</p>
+<h1>Recent Posts</h1>
+
+$for index, post in enumerate(posts):	
+	<div class="$loop.parity">
+		$:post
+	</div>

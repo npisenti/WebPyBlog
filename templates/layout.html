@@ -1,12 +1,27 @@
 $def with (page)
 <html>
-<head>
-<title>
-$title
-</title>
-</head>
-<body>
-<p>Home of the lightweight blog!</p>
-$:page
-</body>
+	<head>
+		<title>$title</title>
+		<link rel="stylesheet" href="static/custom.css" type="text/css" media="screen" charset="utf-8"/>
+	</head>
+	<body>
+		<div id="container">
+			
+			<div id="header">
+				<div id="title-bar">
+					<ul>
+						<li><h1>$title</h1></li>
+						<li><h2>"$tag_line"</h2></li>
+					</ul>
+				</div>
+				<div id="nav-bar">
+						<a href="/"><li>Home</li></a><a href="/index"><li>Index</li></a>
+				</div>
+			</div>
+			
+			<div id="content">
+				$:page
+			</div>
+		</div> <!-- end container -->
+	</body>
 </html>

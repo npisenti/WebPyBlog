@@ -1,0 +1,75 @@
+body{
+    background:white;
+    margin: 0;
+    font: "Hoefler Text";
+}
+
+h1 { 
+    font-weight: 500;
+    font-size: 40px;}
+#container {
+    width: 100%;
+    position: absolute;
+    top:0;
+}
+#header {
+    
+    width: 100%;
+    
+}
+#title-bar { background: #eee; }
+
+#header ul { margin: auto; padding: 20px 20px; width: 800px;}
+#header li { display: inline;  }
+#title-bar li { padding-left: 20px; margin:auto; }
+#nav-bar { 
+    background: #fff;
+    width: 840px;
+    margin:auto;
+    border: 1px solid black;
+    border-top: none;
+   
+}
+
+#nav-bar li {
+     
+     border-right: 1px solid black;
+     padding: 10px 20px; 
+     display: inline-block;
+     font-style: italic;
+     
+    }
+#nav-bar li:hover { background-color: #eee; cursor: pointer;}
+#nav-bar a { text-decoration:none; color: #000; display: inline-block;}
+
+    
+ul h1 { display: inline;}
+ul h2 { display: inline;}
+
+#content{
+    border: 1px solid black;
+    border-top: none; 
+    border-bottom: none;
+    width: 840px;
+   
+    margin:auto;
+    background: white;
+    position: relative;
+    overflow:none;
+}
+
+#content h1 { padding: 20px; margin: 0; }
+
+
+#content .post { 
+    padding: 20px;
+}
+
+#content .post h1 { padding: 20px 0px;}
+#content .odd { background: #eee; }
+
+
+
+
+
+

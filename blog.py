@@ -2,6 +2,7 @@ import web
 import base64
 import os
 import settings
+import markdown
 
 urls = (
   '/', 'home',
@@ -12,10 +13,9 @@ app = web.application(urls, globals(), autoreload=True)
 
 
 
-def render(global_vars = {}, partial = False):
-    if 'title' not in global_vars:
-        global_vars['title'] = settings.SITE_NAME
-        
+def render(params = {}, partial = False):
+    global_vars = dict(settings.GLOBAL_PARAMS.items() + params.items())
+    global_vars['markdown'] = markdown.markdown
     if partial:
         return web.template.render('templates/', globals=global_vars)
     else:
@@ -36,13 +36,10 @@ class home:
         posts = []
         for post in post_list:
             f = open('posts/' + post, 'rb')
-            posts += [render_partial.post(post[:-5], f.read())]
+            posts += [render(partial = True).post(post[:-5], f.read())]
             f.close()
             
-        return render().home(settings.SITE_NAME, posts)
-
-
-
+        return render().home(posts)
 
 
 class post:

@@ -1,4 +1,7 @@
 $def with (name, content)
 
-<h1><a href="$name">$name</a></h1>
-<p>$content</p>
+
+<div class="post">
+	<h1><a href="$name">$name</a></h1>
+	<p>$:markdown(content)</p>
+</div>
