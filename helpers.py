@@ -9,6 +9,8 @@ from datetime import date
 def render(params = {}, partial = False):
     static_pages = []
     for page in os.listdir('pages'):
+        if page[-5:] != ".page":
+            continue
         page_dict = {} 
         page_dict['name'] = page[0:-5]
         page_dict['path'] = '/page/' + page[0:-5]
@@ -32,6 +34,8 @@ def posting_list():
     post_list = reversed(os.listdir('posts'))
     posts = []
     for post in post_list:
+        if post[-5:] != ".post":
+            continue
         if check_date(post[0:10]):  
             f = open('posts/' + post, 'rb')
             post_name = " ".join(post[11:-5].split("-"))
@@ -43,6 +47,8 @@ def posting_list():
 def render_post_or_none(url):
     post_dict = {}
     for post in os.listdir('posts'):
+        if post[-5:] != ".post":
+            continue
         post_dict[post[11:-5]] = post
     
     if (url in post_dict) and check_date(post_dict[url][0:10]):
@@ -64,6 +70,8 @@ def render_page_or_none(url):
     page_dict = {}
     
     for page in os.listdir('pages'):
+        if page[-5:] != ".page":
+            continue
         page_dict[page[0:-5]] = page
 
     if (url in page_dict):
