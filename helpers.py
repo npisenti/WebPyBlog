@@ -29,7 +29,7 @@ def check_date(date_string):
     return date(int(date_string[0:4]), int(date_string[5:7]), int(date_string[8:10])) <= today
 
 def posting_list():
-    post_list = os.listdir('posts')
+    post_list = reversed(os.listdir('posts'))
     posts = []
     for post in post_list:
         if check_date(post[0:10]):  
