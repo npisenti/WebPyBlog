@@ -1,3 +1,4 @@
+// This highlights the correct tab to correspond to the page you are on...
 
 	$(document).ready(function(){ 
 	    var location_tree = window.location.pathname.split("/");

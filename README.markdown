@@ -4,6 +4,17 @@
 
 This was just a fun project to try out the web.py platform. I wanted to write a lightweight blog implementation, which could be deployed with very little setup. Any comments/suggestions on the code are welcome!  I'm just a hobbyist programmer and this is my first web.py project, so hopefully there are no glaring security holes...
 
+The code is a manageable two files and about 150 lines (plus a few assorted templates). There are probably ways to refactor and make it even smaller. It doesn't require a database to run, but instead uses text files stored in the "posts" and "pages" folders, which you manage using Git.
+
+### How to run
+
+After checking out the code, run
+
+	python blog.py
+
+For deployment, check out the details on the web.py website: [http://webpy.org/install#prod](http://webpy.org/install#prod)
+
+
 ### How to manage content on WebPyBlog
 
 The "Projects", "About", and "Contact" pages are example static pages. They are kept in the pages folder, and named
