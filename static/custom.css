@@ -58,6 +58,7 @@ div#content{
     width: 840px;
     margin:auto;
     background: white;  
+    position: relative;
     
 }
 
@@ -77,11 +78,19 @@ div#content-wrapper{
 
 #content .post { 
     padding: 20px;
+    position: relative;
 }
 
 #content .post h1 { padding: 20px 0px;}
 #content .odd { background: #eee; }
 
+#content .publish-date {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    padding: 20px;
+    
+}
 
 
 #content .page {

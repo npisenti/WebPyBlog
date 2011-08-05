@@ -1,7 +1,8 @@
-$def with (name, path, content)
+$def with (name, path, date, content)
 
 
 <div class="post">
 	<h1><a href="$path">$name</a></h1>
-	<p>$:markdown(content)</p>
+	$:markdown(content)
+	<div class="publish-date"><p>Published: $date</p></div>
 </div>

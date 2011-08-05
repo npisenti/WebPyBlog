@@ -53,7 +53,8 @@ def render_post_partials():
             f = open('posts/' + post, 'rb')
             post_name = " ".join(post[11:-5].split("-"))    # Caluclates name based on naming convention.
             post_path = "/post/" + post[11:-5]              # Calculates path
-            posts += [render(partial = True).post(post_name, post_path, f.read())]
+            post_date = post[0:10]
+            posts += [render(partial = True).post(post_name, post_path, post_date, f.read())]
             f.close()
             
     return posts
@@ -69,15 +70,17 @@ def render_post_or_none(url):
         f = open('posts/' + post_dict[url], 'rb')
         post_content = f.read()
         post_name = web.websafe(" ".join(url.split("-")))
+        post_date = post_dict[url][0:10]
         f.close()
     else:
         post_content = "This page does not exist!"
         post_name = "Not Found"
+        post_date = "N/A"
     
     title = web.websafe(settings.SITE_NAME + " - " + post_name)
     path = "/post/" + url
     
-    return render({'title' : title}).post(post_name, path, post_content)
+    return render({'title' : title}).post(post_name, path, post_date, post_content)
 
 
 def render_page_or_none(url):
