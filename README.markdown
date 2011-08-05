@@ -2,7 +2,7 @@
 
 ## WebPyBlog
 
-This was just a fun project to try out the web.py platform. I wanted to write a lightweight blog implementation, which could be deployed with very little setup. Any comments/suggestions on the code are welcome! Feel free to fork or check out the code on github: [https://github.com/npisenti/WebPyBlog](https://github.com/npisenti/WebPyBlog). I'm just a hobbyist programmer and this is my first web.py project, so hopefully there are no glaring security holes...
+This was just a fun project to try out the web.py platform. I wanted to write a lightweight blog implementation, which could be deployed with very little setup. Any comments/suggestions on the code are welcome!  I'm just a hobbyist programmer and this is my first web.py project, so hopefully there are no glaring security holes...
 
 ### How to manage content on WebPyBlog
 
