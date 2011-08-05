@@ -9,20 +9,23 @@ $def with (page)
 			
 			<div id="header">
 				<div id="title-bar">
-					<ul>
 						<li><h1>$site_name</h1></li>
 						<li><h2>"$tag_line"</h2></li>
-					</ul>
-				</div>
-				<div id="nav-bar">
-						<a href="/"><li>Home</li></a><a href="/index"><li>Index</li></a>
 				</div>
 			</div>
 			<div id="content-wrapper">
+<div id="nav-bar">
+
+<a href="/"><li>home</li></a>\
+$for static in static_pages:
+  <a href="$static['path']"><li>$static['name']</li></a>\
+
+</div>
 				<div id="content">
 					$:page
 				</div>
 			</div>
+			<div id="footer"><p>$footer_tag  <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a></p></div>
 		</div> <!-- end container -->
 	</body>
 </html>

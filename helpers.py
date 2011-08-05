@@ -7,7 +7,16 @@ from datetime import date
 
 
 def render(params = {}, partial = False):
-    global_vars = dict(settings.GLOBAL_PARAMS.items() + params.items())
+    static_pages = []
+    for page in os.listdir('pages'):
+        page_dict = {} 
+        page_dict['name'] = page[0:-5]
+        page_dict['path'] = '/page/' + page[0:-5]
+        static_pages += [page_dict]
+    
+    pages = {'static_pages' : static_pages}
+    
+    global_vars = dict(settings.GLOBAL_PARAMS.items() + params.items() + pages.items())
     global_vars['markdown'] = markdown.markdown
     if partial:
         return web.template.render('templates/', globals=global_vars)
