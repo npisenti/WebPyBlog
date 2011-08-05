@@ -1,10 +1,16 @@
 $def with (page)
 <html>
+	
 	<head>
 		<title>$title</title>
 		<link rel="stylesheet" href="/static/custom.css" type="text/css" media="screen" charset="utf-8"/>
+		<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type='text/javascript' src="/static/javascript.js"></script>
+
 	</head>
+	
 	<body>
+		
 		<div id="container">
 			
 			<div id="header">
@@ -13,13 +19,14 @@ $def with (page)
 						<li><h2>"$tag_line"</h2></li>
 				</div>
 			</div>
-			<div id="content-wrapper">
+			
+<div id="content-wrapper">
 <div id="nav-bar">
-
-<a href="/"><li>home</li></a>\
+<a href="/"><li id="navbar-blog">blog</li></a>\
 $for static in static_pages:
-  <a href="$static['path']"><li>$static['name']</li></a>\
+  <a href="$static['path']"><li id="navbar-$static['name']">$static['name']</li></a>\
 </div>
+
 				<div id="content">
 					$:page
 				</div>

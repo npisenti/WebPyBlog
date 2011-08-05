@@ -12,8 +12,8 @@ def render(params = {}, partial = False):
         if page[-5:] != ".page":
             continue
         page_dict = {} 
-        page_dict['name'] = page[0:-5]
-        page_dict['path'] = '/page/' + page[0:-5]
+        page_dict['name'] = page[3:-5]
+        page_dict['path'] = '/page/' + page[3:-5]
         static_pages += [page_dict]
     
     pages = {'static_pages' : static_pages}
@@ -72,7 +72,7 @@ def render_page_or_none(url):
     for page in os.listdir('pages'):
         if page[-5:] != ".page":
             continue
-        page_dict[page[0:-5]] = page
+        page_dict[page[3:-5]] = page
 
     if (url in page_dict):
         f = open('pages/' + page_dict[url], 'rb')

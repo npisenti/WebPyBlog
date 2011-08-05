@@ -2,6 +2,8 @@ Put your pages in here.
 
 The naming scheme is just
 
-PAGENAME.page
+01-PAGE1NAME.page
+02-PAGE2NAME.page
+etc.
 
 Works with markdown, etc.
