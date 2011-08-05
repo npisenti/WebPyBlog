@@ -11,11 +11,9 @@ urls = (
 app = web.application(urls, globals(), autoreload=True)
 
 
-
-
 class index:
     def GET(self):
-        posts = map(lambda x: x[:-5], os.listdir('posts'))
+        posts = post_info_list()
         title = settings.SITE_NAME + " - Index" 
         return render({'title' : title }).index(posts)
 
@@ -32,6 +30,8 @@ class post:
 class page:
     def GET(self, url):
         return render_page_or_none(url)
+
+
 
 if __name__ == "__main__":
     app.run()

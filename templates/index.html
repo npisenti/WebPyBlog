@@ -5,6 +5,6 @@ $def with (posts)
 <h2>List of posts:</h2>
 <ul>
 $for post in posts:
-	<li><a href="$post">$post</a></li>
+	<li><a href="$post['post_path']">$post['post_date'] - $post['post_name']</a></li>
 <ul>
 </div>

@@ -6,6 +6,8 @@ import markdown
 from datetime import date
 
 
+
+
 def render(params = {}, partial = False):
     static_pages = []
     
@@ -29,6 +31,23 @@ def render(params = {}, partial = False):
         return web.template.render('templates/', base='layout', globals=global_vars)
 
 
+def post_info_list():
+    """ Returns a list of post names and paths """
+
+    post_list = filter(lambda x: x[-5:] == ".post", os.listdir('posts'))
+    posts = []
+
+    for post in post_list:
+
+        if check_date(post[0:10]):                  # Checks to see if it should be published.
+            post_name = " ".join(post[11:-5].split("-"))    # Caluclates name based on naming convention.
+            post_path = "/post/" + post[11:-5]              # Calculates path
+            post_date = post[0:10]
+            posts += [{'post_name': post_name, 'post_path' : post_path, 'post_date': post_date}]
+    return posts
+
+
+
 def check_date(date_string):
     """ Checks to see if the current date is later than date_string """
     today = date.today()
@@ -38,17 +57,17 @@ def check_date(date_string):
         should_publish = False
     
     return should_publish
+    
+    
+    
 
 def render_post_partials():
     """ Returns a list of rendered post partials """
     
-    post_list = reversed(os.listdir('posts'))       # Newest to oldest.
+    post_list = filter(lambda x: x[-5:] == ".post", reversed(os.listdir('posts')))
     posts = []
     
-    for post in post_list:
-        if post[-5:] != ".post":                    # Checks the extension of the file.
-            continue
-                    
+    for post in post_list:                    
         if check_date(post[0:10]):                  # Checks to see if it should be published.
             f = open('posts/' + post, 'rb')
             post_name = " ".join(post[11:-5].split("-"))    # Caluclates name based on naming convention.
@@ -56,20 +75,23 @@ def render_post_partials():
             post_date = post[0:10]
             posts += [render(partial = True).post(post_name, post_path, post_date, f.read())]
             f.close()
-            
     return posts
 
+
+
+
 def render_post_or_none(url):
+    
+    valid_posts = filter(lambda x: x[-5:] == ".post", os.listdir('posts'))
     post_dict = {}
-    for post in os.listdir('posts'):
-        if post[-5:] != ".post":
-            continue
+    
+    for post in valid_posts:                            # Maps the post name to the file name
         post_dict[post[11:-5]] = post
     
-    if (url in post_dict) and check_date(post_dict[url][0:10]):
+    if (url in post_dict) and check_date(post_dict[url][0:10]):     # Checks to see if given URL leads to valid post file
         f = open('posts/' + post_dict[url], 'rb')
         post_content = f.read()
-        post_name = web.websafe(" ".join(url.split("-")))
+        post_name = " ".join(url.split("-"))
         post_date = post_dict[url][0:10]
         f.close()
     else:
@@ -78,18 +100,20 @@ def render_post_or_none(url):
         post_date = "N/A"
     
     title = web.websafe(settings.SITE_NAME + " - " + post_name)
-    path = "/post/" + url
+    post_path = "/post/" + url
     
-    return render({'title' : title}).post(post_name, path, post_date, post_content)
+    return render({'title' : title}).post(post_name, post_path, post_date, post_content)
+
+
+
 
 
 def render_page_or_none(url):
     page_dict = {}
+    valid_pages = filter(lambda x: x[-5:] == ".page", os.listdir('pages'))
     
-    for page in os.listdir('pages'):
-        if page[-5:] != ".page":
-            continue
-        page_dict[page[3:-5]] = page
+    for page in valid_pages:
+        page_dict[page[3:-5]] = page            # Maps page name to file path
 
     if (url in page_dict):
         f = open('pages/' + page_dict[url], 'rb')

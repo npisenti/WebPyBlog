@@ -1,3 +1,4 @@
 *.pyc
-*.post
-*.page
+
+# *.post
+# *.page

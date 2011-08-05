@@ -1,0 +1,16 @@
+This is an example post.
+
+You can use markdown to format, such as **Bold** or *italics*.
+
+## Header 2
+
+### Header 3
+
+	<Code block>
+
+
+Etcetera.
+
+# What to do first
+
+Check out the [projects](/page/projects) page to read about this light-weight blog implementation. Look through the code (it's not very long!), make changes, and start publishing!
