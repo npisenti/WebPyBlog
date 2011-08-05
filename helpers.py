@@ -8,18 +8,21 @@ from datetime import date
 
 def render(params = {}, partial = False):
     static_pages = []
+    
     for page in os.listdir('pages'):
-        if page[-5:] != ".page":
+        if page[-5:] != ".page":        # Checks to see if it has the right extension.
             continue
+            
         page_dict = {} 
         page_dict['name'] = page[3:-5]
         page_dict['path'] = '/page/' + page[3:-5]
-        static_pages += [page_dict]
+        static_pages += [page_dict]                     # Adds page info to list of static pages.
     
-    pages = {'static_pages' : static_pages}
+    pages = {'static_pages' : static_pages}             # Passes list of static pages to template.
     
     global_vars = dict(settings.GLOBAL_PARAMS.items() + params.items() + pages.items())
     global_vars['markdown'] = markdown.markdown
+    
     if partial:
         return web.template.render('templates/', globals=global_vars)
     else:
@@ -27,21 +30,32 @@ def render(params = {}, partial = False):
 
 
 def check_date(date_string):
+    """ Checks to see if the current date is later than date_string """
     today = date.today()
-    return date(int(date_string[0:4]), int(date_string[5:7]), int(date_string[8:10])) <= today
+    try:
+        should_publish = date(int(date_string[0:4]), int(date_string[5:7]), int(date_string[8:10])) <= today
+    except:                         # To catch poorly formatted date_strings 
+        should_publish = False
+    
+    return should_publish
 
-def posting_list():
-    post_list = reversed(os.listdir('posts'))
+def render_post_partials():
+    """ Returns a list of rendered post partials """
+    
+    post_list = reversed(os.listdir('posts'))       # Newest to oldest.
     posts = []
+    
     for post in post_list:
-        if post[-5:] != ".post":
+        if post[-5:] != ".post":                    # Checks the extension of the file.
             continue
-        if check_date(post[0:10]):  
+                    
+        if check_date(post[0:10]):                  # Checks to see if it should be published.
             f = open('posts/' + post, 'rb')
-            post_name = " ".join(post[11:-5].split("-"))
-            post_path = "/post/" + post[11:-5]
+            post_name = " ".join(post[11:-5].split("-"))    # Caluclates name based on naming convention.
+            post_path = "/post/" + post[11:-5]              # Calculates path
             posts += [render(partial = True).post(post_name, post_path, f.read())]
             f.close()
+            
     return posts
 
 def render_post_or_none(url):
@@ -58,7 +72,7 @@ def render_post_or_none(url):
         f.close()
     else:
         post_content = "This page does not exist!"
-        post_name = "Not Found."
+        post_name = "Not Found"
     
     title = web.websafe(settings.SITE_NAME + " - " + post_name)
     path = "/post/" + url

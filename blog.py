@@ -16,11 +16,12 @@ app = web.application(urls, globals(), autoreload=True)
 class index:
     def GET(self):
         posts = map(lambda x: x[:-5], os.listdir('posts'))
-        return render().index(settings.SITE_NAME, posts)
+        title = settings.SITE_NAME + " - Index" 
+        return render({'title' : title }).index(posts)
 
 class home:
     def GET(self):
-        posts = posting_list()
+        posts = render_post_partials()
         return render().home(posts)
 
 

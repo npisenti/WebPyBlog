@@ -1,8 +1,10 @@
-$def with (title, posts)
-$var title:$title
+$def with (posts)
+
+<div class="page">
 <h1>Index</h1>
 <h2>List of posts:</h2>
 <ul>
 $for post in posts:
 	<li><a href="$post">$post</a></li>
 <ul>
+</div>
